@@ -61,7 +61,8 @@ RUN apt update && apt install --yes --no-install-recommends terraform && \
 # https://istio.io/latest/docs/setup/getting-started/#download
 RUN ISTIO_VERSION=${ISTIO_VERSION} curl -L https://istio.io/downloadIstio | sh - && \
     mv istio-${ISTIO_VERSION}/bin/istioctl /usr/local/bin/ && \
-    rm -rf istio-${ISTIO_VERSION}
+    rm -rf istio-${ISTIO_VERSION} && \
+    istioctl version --remote=false
 
 # Install helm
 # https://helm.sh/docs/intro/install/#from-apt-debianubuntu
@@ -73,8 +74,7 @@ RUN curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/s
 # Install kyma cli
 # https://kyma-project.io/#/cli/user/README?id=install-kyma-cli
 RUN curl -sL "https://raw.githubusercontent.com/kyma-project/cli/refs/heads/main/hack/install_cli_latest.sh" | sh - && \
-    mv /usr/local/bin/kyma /usr/local/bin/kyma-cli && \
-    kyma-cli version
+    kyma version
 
 # Install modulectl
 # https://github.com/kyma-project/modulectl?tab=readme-ov-file#installation
