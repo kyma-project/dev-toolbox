@@ -1,0 +1,38 @@
+name: release
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'New release name (e.g. 1.0.0)'
+        required: true
+
+permissions:
+  id-token: write # This is required for requesting the JWT token
+  contents: read # This is required for actions/checkout
+
+jobs:
+  # bump sec-scanners-config
+
+  create-tag:
+    name: Create tag
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.BOT_TOKEN }}
+          fetch-depth: 0
+          ref: ${{ github.ref_name }} # Checkout to latest branch changes
+  
+      - name: Create tag
+        run: |
+          git tag ${{ github.event.inputs.name }}
+          git push origin ${{ github.event.inputs.name }}
+  build:
+    uses: kyma-project/test-infra/.github/workflows/image-builder.yml@main
+    with:
+      name: dev-toolbox
+      dockerfile: Dockerfile
+      tags: "${{ github.sha }},${{ github.event.inputs.name }}"
