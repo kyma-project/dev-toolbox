@@ -73,8 +73,8 @@ RUN curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/s
 # Install kyma cli
 # https://kyma-project.io/#/cli/user/README?id=install-kyma-cli
 RUN curl -sL "https://raw.githubusercontent.com/kyma-project/cli/refs/heads/main/hack/install_cli_latest.sh" | sh - && \
-    mv /usr/local/bin/kyma /usr/local/bin/kyma-cli && \
-    kyma-cli version
+    mv /usr/local/bin/kyma /usr/local/bin/kyma && \
+    kyma version
 
 # Install modulectl
 # https://github.com/kyma-project/modulectl?tab=readme-ov-file#installation
