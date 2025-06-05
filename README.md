@@ -1,6 +1,6 @@
 # dev-toolbox
 
-[![REUSE status](https://api.reuse.software/badge/github.com/kyma-project/docker-registry)](https://api.reuse.software/info/github.com/kyma-project/docker-registry)
+[![REUSE status](https://api.reuse.software/badge/github.com/kyma-project/dev-toolbox)](https://api.reuse.software/info/github.com/kyma-project/dev-toolbox)
 
 ## Contributing
 <!--- mandatory section - do not change this! --->
