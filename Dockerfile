@@ -17,7 +17,15 @@ RUN apt install --yes --no-install-recommends \
     lsb-release \
     telnet \
     tcpdump \
-    openssl
+    openssl \
+    ssh \
+    unzip \
+    procps \
+    libxext-dev \
+    libxrender-dev \
+    libxtst-dev \
+    libxi-dev \
+    libfreetype-dev
 
 # Install kubectl
 # https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management
