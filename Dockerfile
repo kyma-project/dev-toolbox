@@ -95,5 +95,10 @@ RUN TMPDIR="$(mktemp -d)" && \
     rm -f ${TMPDIR}/btp.tar.gz && \
     btp --version
 
+# Upgrade all packages and clean up
+RUN apt upgrade --yes && \
+    apt clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 # TODO: bumblebee
 # TODO: think about installing packages in expected versions (not latest ones)

@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: dev-toolbox
+  labels:
+    run: dev-toolbox
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: dev-toolbox
+  labels:
+    run: dev-toolbox
+rules:
+- apiGroups: ["*"]
+  resources: ["*"]
+  verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: dev-toolbox
+  labels:
+    run: dev-toolbox
+subjects:
+- kind: ServiceAccount
+  name: dev-toolbox
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: dev-toolbox
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: dev-toolbox
+  name: dev-toolbox
+spec:
+  containers:
+  - image: europe-docker.pkg.dev/kyma-project/dev/dev-toolbox:main
+    imagePullPolicy: Always
+    name: dev-toolbox
+    command: ["/bin/sh", "-c", "sleep infinity"]
+    resources: {}
+  dnsPolicy: ClusterFirst
+  serviceAccountName: dev-toolbox
+  restartPolicy: Always
