@@ -9,3 +9,9 @@ on-cluster: ## Run dev-toolbox on the cluster.
 	kubectl apply -f hack/resources.yaml
 	kubectl wait --for=condition=ContainersReady --timeout=60s pod/dev-toolbox
 	kubectl exec -it dev-toolbox -- bash
+
+
+.PHONE: generate-local-devcontainer
+generate-local-devcontainer:
+	mkdir -p ./.devcontainer
+	sed -e 's/"image".*/"build": {\n        "dockerfile": "..\/Dockerfile"\n    },/' hack/devcontainer.json  > ./.devcontainer/devcontainer.json

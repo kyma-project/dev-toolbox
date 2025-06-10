@@ -1,15 +1,13 @@
 // documentation: https://containers.dev/implementors/json_reference/
 {
     "name": "dev-toolbox",
-    "build": {
-        "dockerfile": "../Dockerfile"
-    },
+    "image": "europe-docker.pkg.dev/kyma-project/dev/dev-toolbox:main",
     // Features to add to the dev container. More info: https://containers.dev/features.
     // "features": {},
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
     // "forwardPorts": [],
     // Use 'postCreateCommand' to run commands after the container is created.
-    "postCreateCommand": "./.devcontainer/post_create.sh",
+    "postCreateCommand": "./hack/post_create.sh",
     // Configure tool-specific properties.
     "customizations": {
         "vscode": {
