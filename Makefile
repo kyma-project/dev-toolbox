@@ -13,4 +13,4 @@ on-cluster: ## Run dev-toolbox on the cluster.
 .PHONY: local-devcontainer
 local-devcontainer: ## generate .devcontainer with local Dockerfile
 	mkdir -p ./.devcontainer
-	sed -e 's/"image".*/"build": {\n        "dockerfile": "..\/Dockerfile"\n    },/' hack/devcontainer.json  > ./.devcontainer/devcontainer.json
+	sed -e 's/"image".*/"build": {\n        "dockerfile": "..\/Dockerfile",\n        "context": "..\/"\n    },/' hack/devcontainer.json  > ./.devcontainer/devcontainer.json
