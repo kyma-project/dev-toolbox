@@ -2,6 +2,8 @@ FROM debian:bookworm-slim
 
 ARG ISTIO_VERSION=1.26.1
 
+COPY ./scripts/* /usr/bin/
+
 RUN apt update
 
 RUN apt install --yes --no-install-recommends \

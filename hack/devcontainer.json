@@ -7,7 +7,7 @@
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
     // "forwardPorts": [],
     // Use 'postCreateCommand' to run commands after the container is created.
-    "postCreateCommand": "./hack/post_create.sh",
+    "postAttachCommand": "dev_toolbox_versions",
     // Configure tool-specific properties.
     "customizations": {
         "vscode": {
