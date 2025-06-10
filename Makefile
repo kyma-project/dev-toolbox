@@ -10,8 +10,7 @@ on-cluster: ## Run dev-toolbox on the cluster.
 	kubectl wait --for=condition=ContainersReady --timeout=60s pod/dev-toolbox
 	kubectl exec -it dev-toolbox -- bash
 
-
 .PHONE: generate-local-devcontainer
-generate-local-devcontainer:
+generate-local-devcontainer: ## generate .devcontainer with local Dockerfile
 	mkdir -p ./.devcontainer
 	sed -e 's/"image".*/"build": {\n        "dockerfile": "..\/Dockerfile"\n    },/' hack/devcontainer.json  > ./.devcontainer/devcontainer.json
