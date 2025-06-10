@@ -25,7 +25,9 @@ RUN apt install --yes --no-install-recommends \
     libxrender-dev \
     libxtst-dev \
     libxi-dev \
-    libfreetype-dev
+    libfreetype-dev \
+    make \
+    cmake
 
 # Install kubectl
 # https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management
