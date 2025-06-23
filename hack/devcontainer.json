@@ -1,7 +1,7 @@
 // documentation: https://containers.dev/implementors/json_reference/
 {
     "name": "dev-toolbox",
-    "image": "europe-docker.pkg.dev/kyma-project/dev/dev-toolbox:main",
+    "image": "europe-docker.pkg.dev/kyma-project/prod/dev-toolbox:main",
     // Features to add to the dev container. More info: https://containers.dev/features.
     // "features": {},
     // Use 'forwardPorts' to make a list of ports inside the container available locally.

@@ -39,7 +39,7 @@ metadata:
   name: dev-toolbox
 spec:
   containers:
-  - image: europe-docker.pkg.dev/kyma-project/dev/dev-toolbox:main
+  - image: europe-docker.pkg.dev/kyma-project/prod/dev-toolbox:main
     imagePullPolicy: Always
     name: dev-toolbox
     command: ["/bin/sh", "-c", "sleep infinity"]
