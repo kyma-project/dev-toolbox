@@ -2,7 +2,7 @@
 
 [![REUSE status](https://api.reuse.software/badge/github.com/kyma-project/dev-toolbox)](https://api.reuse.software/info/github.com/kyma-project/dev-toolbox)
 
-The `dev-toolbox` project is home for most usefull binaries in one image. The dev-toolbox is debian-based image that can be used for example as script executor inside a cluster or base image for [devcontainers](https://code.visualstudio.com/docs/devcontainers/containers).
+The `dev-toolbox` project contains the most useful binaries in one image. It is a Debian-based image that can be used, for example, as a script executor inside a cluster or base image for [devcontainers](https://code.visualstudio.com/docs/devcontainers/containers).
 
 The image collects the most useful tools in one place from several areas, like:
 
