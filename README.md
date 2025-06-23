@@ -4,7 +4,7 @@
 
 The `dev-toolbox` project is home for most usefull binaries in one image. The dev-toolbox is debian-based image that can be used for example as script executor inside a cluster or base image for [devcontainers](https://code.visualstudio.com/docs/devcontainers/containers).
 
-The image collects most usefull tools in one place from several areas, like:
+The image collects the most useful tools in one place from several areas, like:
 
 - integrations:
   - kubectl & krew
@@ -28,25 +28,26 @@ The image collects most usefull tools in one place from several areas, like:
 
 ## Usage
 
-Because the `dev-toolbox` is in early development state we would suggest using the latest built image that contains all fixes and smaller improvements:
+> [!NOTE]
+> Because `dev-toolbox` is in an early development state, we would suggest using the latest built image that contains all fixes and smaller improvements:
 
 ```text
 europe-docker.pkg.dev/kyma-project/prod/dev-toolbox:main
 ```
 
-To run local container use:
+To run a local container, use the following command:
 
 ```bash
 docker run -it --rm europe-docker.pkg.dev/kyma-project/prod/dev-toolbox:main
 ```
 
-If you are looking for way to run the `dev-toolbox` inside the cluster apply resources:
+If you are looking for a way to run `dev-toolbox` inside the cluster, apply the required resources:
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/kyma-project/dev-toolbox/refs/heads/main/hack/resources.yaml
 ```
 
-For integration the `dev-toolbox` with the [devcontainers](https://code.visualstudio.com/docs/devcontainers/containers) use [the following configuration](https://raw.githubusercontent.com/kyma-project/dev-toolbox/refs/heads/main/hack/devcontainer.json).
+For integration of `dev-toolbox` with the [devcontainers](https://code.visualstudio.com/docs/devcontainers/containers), use [the following configuration](https://raw.githubusercontent.com/kyma-project/dev-toolbox/refs/heads/main/hack/devcontainer.json).
 
 ## Contributing
 <!--- mandatory section - do not change this! --->
