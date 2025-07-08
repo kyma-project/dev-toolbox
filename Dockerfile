@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim
+FROM ghcr.io/gardenlinux/gardenlinux:1877.0
 
 ARG ISTIO_VERSION=1.26.1
 
