@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim
+FROM --platform=$BUILDPLATFORM debian:bookworm-slim
 
 ARG ISTIO_VERSION=1.26.1
 

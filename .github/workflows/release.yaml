@@ -25,7 +25,7 @@ jobs:
           token: ${{ secrets.BOT_TOKEN }}
           fetch-depth: 0
           ref: ${{ github.ref_name }} # Checkout to latest branch changes
-  
+
       - name: Create tag
         run: |
           git tag -f ${{ github.event.inputs.name }}
@@ -37,3 +37,4 @@ jobs:
       name: dev-toolbox
       dockerfile: Dockerfile
       tags: "${{ github.sha }},${{ github.event.inputs.name }}"
+      build-engine: buildx
