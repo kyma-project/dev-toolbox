@@ -20,3 +20,8 @@ modulectl version
 
 echo "\n\e[0;32m### BTP version ###\e[m"
 btp --version
+
+
+echo "\n\e[0;32m### System version ###\e[m"
+. /etc/os-release
+echo "${PRETTY_NAME} (${GARDENLINUX_COMMIT_ID})"
