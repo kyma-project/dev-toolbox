@@ -1,13 +1,13 @@
-FROM --platform=$BUILDPLATFORM debian:bookworm-slim
+FROM --platform=$BUILDPLATFORM alpine:3.22.0
 
 ARG ISTIO_VERSION=1.26.1
 
 COPY ./scripts/* /usr/bin/
 
-RUN apt update
+RUN apk update
 
-RUN apt install --yes --no-install-recommends \
-    apt-transport-https \
+RUN apk add --no-cache \
+    gcompat \
     ca-certificates \
     curl \
     wget \
@@ -16,30 +16,23 @@ RUN apt install --yes --no-install-recommends \
     jq \
     yq \
     gnupg \
-    lsb-release \
-    telnet \
+    lsb-release-minimal  \
+    inetutils-telnet \
     tcpdump \
     openssl \
-    ssh \
+    openssh-client-default \
     unzip \
     procps \
     libxext-dev \
     libxrender-dev \
     libxtst-dev \
     libxi-dev \
-    libfreetype-dev \
+    freetype-dev \
     make \
-    cmake
-
-# Install kubectl
-# https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management
-RUN curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.33/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
-    sudo chmod 644 /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
-    echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.33/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list && \
-    sudo chmod 644 /etc/apt/sources.list.d/kubernetes.list
-
-RUN apt update && apt install --yes --no-install-recommends kubectl && \
-    kubectl version --client
+    cmake \
+    opentofu \
+    kubectl \
+    helm
 
 # Install krew
 # https://krew.sigs.k8s.io/docs/user-guide/setup/install/
@@ -58,30 +51,12 @@ RUN kubectl krew install ctx
 RUN kubectl krew install ns
 RUN kubectl krew install oidc-login
 
-# Install terraform
-# https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli#install-terraform
-RUN wget -O- https://apt.releases.hashicorp.com/gpg | \
-    gpg --dearmor | \
-    sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
-
-RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(grep -oP '(?<=UBUNTU_CODENAME=).*' /etc/os-release || lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-
-RUN apt update && apt install --yes --no-install-recommends terraform && \
-    terraform version
-
 # Install istioctl
 # https://istio.io/latest/docs/setup/getting-started/#download
 RUN ISTIO_VERSION=${ISTIO_VERSION} curl -L https://istio.io/downloadIstio | sh - && \
     mv istio-${ISTIO_VERSION}/bin/istioctl /usr/local/bin/ && \
     rm -rf istio-${ISTIO_VERSION} && \
     istioctl version --remote=false
-
-# Install helm
-# https://helm.sh/docs/intro/install/#from-apt-debianubuntu
-RUN curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null \
-    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list \
-    && apt update && apt install --yes --no-install-recommends helm && \
-    helm version
 
 # Install kyma cli
 # https://kyma-project.io/#/cli/user/README?id=install-kyma-cli
@@ -108,9 +83,7 @@ RUN TMPDIR="$(mktemp -d)" && \
     btp --version
 
 # Upgrade all packages and clean up
-RUN apt upgrade --yes && \
-    apt clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apk upgrade --no-cache
 
 # TODO: bumblebee
 # TODO: think about installing packages in expected versions (not latest ones)
