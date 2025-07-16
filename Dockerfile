@@ -85,5 +85,4 @@ RUN TMPDIR="$(mktemp -d)" && \
 # Upgrade all packages and clean up
 RUN apk upgrade --no-cache
 
-# TODO: bumblebee
 # TODO: think about installing packages in expected versions (not latest ones)
