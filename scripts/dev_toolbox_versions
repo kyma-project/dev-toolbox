@@ -1,22 +1,22 @@
 #!/bin/sh
 
-echo "\e[0;32m### Kubectl version ###\e[m"
+printf "\e[0;32m### Kubectl version ###\e[m\n"
 kubectl version --client
 
-echo "\n\e[0;32m### Terraform version ###\e[m"
+printf "\n\e[0;32m### Terraform version ###\e[m\n"
 terraform version
 
-echo "\n\e[0;32m### Istioctl version ###\e[m"
+printf "\n\e[0;32m### Istioctl version ###\e[m\n"
 istioctl version --remote=false
 
-echo "\n\e[0;32m### Helm version ###\e[m"
+printf "\n\e[0;32m### Helm version ###\e[m\n"
 helm version
 
-echo "\n\e[0;32m### Kyma version ###\e[m"
+printf "\n\e[0;32m### Kyma version ###\e[m\n"
 kyma version
 
-echo "\n\e[0;32m### Modulectl version ###\e[m"
+printf "\n\e[0;32m### Modulectl version ###\e[m\n"
 modulectl version
 
-echo "\n\e[0;32m### BTP version ###\e[m"
+printf "\n\e[0;32m### BTP version ###\e[m\n"
 btp --version
