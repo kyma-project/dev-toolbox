@@ -65,7 +65,8 @@ RUN curl -sL "https://raw.githubusercontent.com/kyma-project/cli/refs/heads/main
 
 # Install modulectl
 # https://github.com/kyma-project/modulectl?tab=readme-ov-file#installation
-RUN curl -L "https://github.com/kyma-project/modulectl/releases/latest/download/modulectl-${TARGETOS}${TARGETARCH}" -o /usr/local/bin/modulectl && \
+RUN VERSION_SUFFIX="$(uname -m | sed -e 's/amd64//' -e 's/x86_64//' -e 's/arm64/-arm/' -e 's/aarch64/-arm/')" && \
+    curl -Lv "https://github.com/kyma-project/modulectl/releases/latest/download/modulectl-${TARGETOS}${VERSION_SUFFIX}" -o /usr/local/bin/modulectl && \
     chmod +x /usr/local/bin/modulectl && \
     modulectl version
 
