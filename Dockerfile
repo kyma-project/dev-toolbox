@@ -1,6 +1,7 @@
 FROM alpine:3.22.0
 
 ARG ISTIO_VERSION=1.26.1
+ARG SMCTL_VERSION=v1.12.2
 ARG TARGETOS
 ARG TARGETARCH
 
@@ -78,6 +79,14 @@ RUN TMPDIR="$(mktemp -d)" && \
     tar -zxf ${TMPDIR}/btp.tar.gz --strip-components=1 -C /usr/local/bin && \
     rm -f ${TMPDIR}/btp.tar.gz && \
     btp --version
+
+# Install service-manager-cli
+# https://github.com/Peripli/service-manager-cli/releases
+RUN TMPDIR="$(mktemp -d)" && \
+    SMCTL_VERSION=${SMCTL_VERSION} curl -L "https://github.com/Peripli/service-manager-cli/releases/latest/download/smctl-${SMCTL_VERSION}-${TARGETOS}-${TARGETARCH}.tar.gz" -o "${TMPDIR}/smctl.tar.gz" && \
+    tar -xzf "${TMPDIR}/smctl.tar.gz" -C /usr/local/bin && \
+    rm -f "${TMPDIR}/smctl.tar.gz" && \
+    smctl version
 
 # Upgrade all packages and clean up
 RUN apk upgrade --no-cache
