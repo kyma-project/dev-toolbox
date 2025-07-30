@@ -15,4 +15,3 @@ jobs:
       name: dev-toolbox
       dockerfile: Dockerfile
       tags: "${{ github.sha }},PR-${{ github.event.number }}"
-      build-engine: buildx

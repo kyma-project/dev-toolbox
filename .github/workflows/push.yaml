@@ -15,4 +15,3 @@ jobs:
       name: dev-toolbox
       dockerfile: Dockerfile
       tags: "${{ github.sha }},${{ github.ref_name}}"
-      build-engine: buildx
