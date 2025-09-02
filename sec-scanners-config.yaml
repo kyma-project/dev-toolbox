@@ -1,4 +1,4 @@
 module-name: dev-toolbox
 kind: kyma
-# bdba:
-#   - europe-docker.pkg.dev/kyma-project/prod/dev-toolbox:main
+bdba:
+  - europe-docker.pkg.dev/kyma-project/prod/dev-toolbox:main
