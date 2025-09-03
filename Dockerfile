@@ -83,7 +83,7 @@ RUN TMPDIR="$(mktemp -d)" && \
 # Install service-manager-cli
 # https://github.com/Peripli/service-manager-cli/releases
 RUN TMPDIR="$(mktemp -d)" && \
-    SMCTL_VERSION=${SMCTL_VERSION} curl -L "https://github.com/Peripli/service-manager-cli/releases/latest/download/smctl-${SMCTL_VERSION}-${TARGETOS}-${TARGETARCH}.tar.gz" -o "${TMPDIR}/smctl.tar.gz" && \
+    SMCTL_VERSION=${SMCTL_VERSION} curl -L "https://github.com/Peripli/service-manager-cli/releases/download/${SMCTL_VERSION}/smctl-${SMCTL_VERSION}-${TARGETOS}-${TARGETARCH}.tar.gz" -o "${TMPDIR}/smctl.tar.gz" && \
     tar -xzf "${TMPDIR}/smctl.tar.gz" -C /usr/local/bin && \
     rm -f "${TMPDIR}/smctl.tar.gz" && \
     smctl version
