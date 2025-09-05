@@ -14,3 +14,8 @@ on-cluster: ## Run dev-toolbox on the cluster.
 local-devcontainer: ## generate .devcontainer with local Dockerfile
 	mkdir -p ./.devcontainer
 	sed -e 's/"image".*/"build": {\n        "dockerfile": "..\/Dockerfile",\n        "context": "..\/"\n    },/' hack/devcontainer.json  > ./.devcontainer/devcontainer.json
+
+.PHONY: devcontainer
+devcontainer: ## generate .devcontainer with the latest remote image
+	mkdir -p ./.devcontainer
+	cp hack/devcontainer.json ./.devcontainer/devcontainer.json

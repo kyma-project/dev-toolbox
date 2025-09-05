@@ -17,7 +17,16 @@
                 "ms-azuretools.vscode-containers"
             ]
         }
-    }
-    // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-    // "remoteUser": "root"
+    },
+    "remoteEnv": {
+        "KUBECONFIG": "/root/.kube/config"
+    },
+    // edit the source if your Kubeconfig is in different location than ${HOME}/.kube/config 
+    "mounts": [
+        "source=${localEnv:HOME}/.kube/config,target=/root/.kube/config,type=bind,consistency=cached"
+    ],
+    // use host network to be able to access local k3d clusters
+    "runArgs": [
+        "--network=host"
+    ]
 }
