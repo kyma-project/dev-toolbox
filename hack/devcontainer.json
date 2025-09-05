@@ -21,6 +21,7 @@
     "remoteEnv": {
         "KUBECONFIG": "/root/.kube/config"
     },
+    // edit the source if your Kubeconfig is in different location than ${HOME}/.kube/config 
     "mounts": [
         "source=${localEnv:HOME}/.kube/config,target=/root/.kube/config,type=bind,consistency=cached"
     ],
