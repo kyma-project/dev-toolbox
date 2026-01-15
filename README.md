@@ -8,7 +8,7 @@ The image collects the most useful tools in one place from several areas, like:
 
 - integrations:
   - kubectl & krew
-  - terraform
+  - tofu
   - istioctl
   - helm
   - kyma-cli

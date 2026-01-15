@@ -3,8 +3,8 @@
 echo -e "\e[0;32m### Kubectl version ###\e[m"
 kubectl version --client
 
-echo -e "\n\e[0;32m### Terraform version ###\e[m"
-terraform version
+echo -e "\n\e[0;32m### Tofu version ###\e[m"
+tofu version
 
 echo -e "\n\e[0;32m### Istioctl version ###\e[m"
 istioctl version --remote=false
