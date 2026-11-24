@@ -27,10 +27,23 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.ref_name }} # Checkout to latest branch changes
 
-      - name: Create tag
+      - name: Validate release name
+        env:
+          NAME: ${{ github.event.inputs.name }}
         run: |
-          git tag -f ${{ github.event.inputs.name }}
-          git push -f origin ${{ github.event.inputs.name }}
+          if ! printf '%s' "$NAME" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "Invalid release name: '$NAME'. Expected a semantic version like 1.2.3."
+            exit 1
+          fi
+        shell: bash
+
+      - name: Create tag
+        env:
+          NAME: ${{ github.event.inputs.name }}
+        run: |
+          git tag -f -- "$NAME"
+          git push -f origin "refs/tags/$NAME"
+        shell: bash
   build:
     needs: create-tag
     uses: kyma-project/test-infra/.github/workflows/image-builder.yml@main
