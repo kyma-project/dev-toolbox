@@ -37,4 +37,6 @@ jobs:
     with:
       name: dev-toolbox
       dockerfile: Dockerfile
-      tags: "${{ github.sha }},${{ github.event.inputs.name }}"
+      tags: |
+        ${{ github.sha }}
+        ${{ github.event.inputs.name }}
