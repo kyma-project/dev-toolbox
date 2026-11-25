@@ -23,4 +23,6 @@ jobs:
     with:
       name: dev-toolbox
       dockerfile: Dockerfile
-      tags: "${{ github.sha }},PR-${{ github.event.number }}"
+      tags: |
+        ${{ github.sha }}
+        PR-${{ github.event.number }}
